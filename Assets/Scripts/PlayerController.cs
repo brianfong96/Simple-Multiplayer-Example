@@ -2,6 +2,14 @@
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
+	
+	public GameObject Body;
+
+	public override void OnStartLocalPlayer()
+	{
+		Body.GetComponent<MeshRenderer>().material.color = Color.blue;
+	}
+
 	// Update is called once per frame
 	void Update () {
 
