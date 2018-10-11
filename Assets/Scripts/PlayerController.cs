@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
-	
+
 	public GameObject BulletPrefab;
 	public Transform BulletSpawn;
 
@@ -43,6 +43,5 @@ public class PlayerController : NetworkBehaviour {
 		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * BulletSpeed;
         NetworkServer.Spawn(bullet);
 		Destroy(bullet, BulletLifeTime);		
-	}
-
+	}    
 }
