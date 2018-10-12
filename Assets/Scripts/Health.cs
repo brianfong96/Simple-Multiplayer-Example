@@ -8,7 +8,8 @@ public class Health : NetworkBehaviour {
     public const int MAX_HEALTH = 100;    
     public RectTransform HealthBar;
 
-    [SyncVar(hook ="OnChangeHealth")]
+    //[SyncVar(hook ="OnChangeHealth")]
+    [SyncVar]
     public int CurrentHealth = MAX_HEALTH;
 
     public void TakeDamage(int amount)
@@ -33,10 +34,15 @@ public class Health : NetworkBehaviour {
             transform.position = Vector3.zero;
         }
     }
-
-    void OnChangeHealth(int health)
+    
+    private void Update()
     {
-        HealthBar.sizeDelta = new Vector2(health, HealthBar.sizeDelta.y);
+        HealthBar.sizeDelta = new Vector2(CurrentHealth, HealthBar.sizeDelta.y);
     }
+
+    //void OnChangeHealth(int health)
+    //{
+    //    HealthBar.sizeDelta = new Vector2(health, HealthBar.sizeDelta.y);
+    //}
 
 }
