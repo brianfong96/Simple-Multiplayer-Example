@@ -18,10 +18,20 @@ public class Health : NetworkBehaviour {
         CurrentHealth -= amount;
         if (CurrentHealth <= 0)
         {
-            CurrentHealth = 0;
-            Debug.Log("Dead!");
+            CurrentHealth = MAX_HEALTH;
+            RpcRespawn();
         }
         
+    }
+
+    [ClientRpc]
+    void RpcRespawn()
+    {
+        if (isLocalPlayer)
+        {
+            // move back to zero location
+            transform.position = Vector3.zero;
+        }
     }
 
     void OnChangeHealth(int health)
